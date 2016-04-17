@@ -3,6 +3,7 @@ Unidiceはニコ生でFFXIVのダイスの出目をソートするアプリで�
 
 ## スクリーンショット
 ![スクリーンショット](https://s3-ap-northeast-1.amazonaws.com/unidice/ScreenShot01.jpg)
+キャプチャ画像は[ユニなま！](http://ch.nicovideo.jp/uni-ch)からの引用です。
 
 ## 機能
 ログウィンドウでダイス！メッセージの表示されている箇所を選択し[実行]ボタンを押すと、ダイスの出目の大きい順または小さい順で表示します。
@@ -99,4 +100,4 @@ http://leptonica.com/about-the-license.html
 記載されている会社名・製品名・システム名などは、各社の商標、または登録商標です。
 
 ## FFXIVの画像に関する著作権表記
-Copyright (C) 2010 - 2016 SQUARE ENIX CO., LTD. All Rights Reserved.
+Copyright (C) 2010 - 2016 SQUARE ENIX CO., LTD. All Rights Reserved.  
