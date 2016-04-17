@@ -1,8 +1,6 @@
 # unidice
 Unidiceはニコ生でFFXIVのダイスの出目をソートするアプリです。
 
-ニコニコ生放送のすべての生主と視聴者は自由に本ソフトウェアをご利用頂くことができます。
-
 ## スクリーンショット
 ![スクリーンショット](https://s3-ap-northeast-1.amazonaws.com/unidice/ScreenShot01.jpg)
 
