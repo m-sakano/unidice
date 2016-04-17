@@ -1,13 +1,58 @@
 # unidice
 Unidiceはニコ生でFFXIVのダイスの出目をソートするアプリです。
 
+## スクリーンショット
+![スクリーンショット](https://s3-ap-northeast-1.amazonaws.com/unidice/ScreenShot01.jpg)
+
+## インストール
+### Windows
+ライブラリのインストールが非常に大変なのでバイナリパッケージを配布します。（準備中）
+自身でインストールする場合はMacOSのインストールを参考にしてそれぞれWindows版のインストーラをダウンロードしてインストールします。
+
+#### 実行
+ダウンロードしたzipファイルを解凍し、unidice.exeを実行します。
+
+### MacOSX
+#### 環境
+- Python 2.7
+
+##### Qt5
+```
+$ sudo port install qt5
+```
+##### PyQt
+```
+$ sudo port install py27-pyqt5
+```
+##### tesseract-ocr
+macportsでインストールします。Homebrewユーザはコマンドを読み替えてください。
+```
+$ sudo port install tesseract
+```
+##### pyocr
+依存関係でpillow(PIL fork)が一緒にインストールされます。
+```
+$ sudo pip install pyocr
+```
+##### unidiceインストール
+```
+$ git clone https://github.com/m-sakano/unidice
+```
+##### tesseractの言語データをコピー
+tesseractをソースからインストールした場合は、tessdataのディレクトリが/usr/local/share/tessdataになります。読み替えてください。
+```
+$ cd unidice
+$ sudo cp jpn.tessdata /opt/local/share/tessdata/jpn.tessdata
+```
+#### 実行
+```
+$ python unidice.py
+```
+
 ## ライセンス
 本ソフトウェアのライセンスはGPLv3で配布しています。詳細は次の表示をご確認ください。
 
 https://github.com/m-sakano/unidice/blob/master/COPYING
-
-## スクリーンショット
-[スクリーンショット](https://s3-ap-northeast-1.amazonaws.com/unidice/ScreenShot01.jpg)
 
 ### 概要
 - プログラムの利用、修正、配布を行うことができます。
