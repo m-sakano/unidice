@@ -6,6 +6,9 @@ Unidiceはニコ生でFFXIVのダイスの出目をソートするアプリで�
 
 https://github.com/m-sakano/unidice/blob/master/COPYING
 
+## スクリーンショット
+[スクリーンショット](https://s3-ap-northeast-1.amazonaws.com/unidice/ScreenShot01.jpg)
+
 ### 概要
 - プログラムの利用、修正、配布を行うことができます。
 - 再配布の場合はライセンスと著作権の表示、変更点を示すこと、ソースコードの開示が必要です。
