@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QRubberBand
 from main_window import Ui_Form
 from selectWidget import Ui_Form2
 from PIL import Image, ImageGrab
-import sys, time
+import os, sys, time
 import pyocr
 import pyocr.builders
 import ConfigParser
@@ -198,10 +198,14 @@ class SelectWidget(QWidget, Ui_Form2):
         QWidget.mouseReleaseEvent(self, event)
 
 if __name__ == '__main__':
+    if os.name == 'nt':
+        os.environ['PATH']=os.environ['PATH']+';'+os.getcwd()
     config = ConfigParser.RawConfigParser()
     config.read('config.cfg')
     app = QApplication(sys.argv)
     main_window = MainWindow()
-
+    icon = QtGui.QIcon()
+    icon.addPixmap(QtGui.QPixmap("windowicon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+    app.setWindowIcon(icon)
     main_window.show()
     sys.exit(app.exec_())
