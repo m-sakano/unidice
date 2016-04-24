@@ -19,7 +19,6 @@ class Ui_Form(object):
         Form.setSizePolicy(sizePolicy)
         Form.setMinimumSize(QtCore.QSize(360, 400))
         Form.setMaximumSize(QtCore.QSize(360, 16777215))
-        Form.setToolTip("")
         self.verticalLayout = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout.setObjectName("verticalLayout")
         self.groupBox = QtWidgets.QGroupBox(Form)
@@ -114,7 +113,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "ユニ生FFXIVダイス！ランキング"))
+        Form.setWindowTitle(_translate("Form", "ユニなま！FFXIVダイス！ランキング"))
         self.groupBox.setTitle(_translate("Form", "設定"))
         self.label.setText(_translate("Form", "順序"))
         self.radioButton.setToolTip(_translate("Form", "<html><head/><body><p>ダイスの出目を大きい順に並べるときに選択します。</p></body></html>"))

@@ -1,12 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
+if os.name == 'nt':
+    os.environ['PATH']=os.environ['PATH']+';'+os.getcwd()
+
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QRubberBand
 from main_window import Ui_Form
 from selectWidget import Ui_Form2
 from PIL import Image, ImageGrab
-import os, sys, time
+import sys, time
 import pyocr
 import pyocr.builders
 import ConfigParser
@@ -198,8 +202,6 @@ class SelectWidget(QWidget, Ui_Form2):
         QWidget.mouseReleaseEvent(self, event)
 
 if __name__ == '__main__':
-    if os.name == 'nt':
-        os.environ['PATH']=os.environ['PATH']+';'+os.getcwd()
     config = ConfigParser.RawConfigParser()
     config.read('config.cfg')
     app = QApplication(sys.argv)
