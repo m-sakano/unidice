@@ -2,7 +2,7 @@
 Unidiceはニコ生でFFXIVのダイスの出目をソートするアプリです。
 
 ## スクリーンショット
-![スクリーンショット](https://s3-ap-northeast-1.amazonaws.com/unidice/ScreenShot01.jpg)
+![スクリーンショット](https://s3-ap-northeast-1.amazonaws.com/unidice/ScreenShot01.png)
 
 キャプチャ画像は[ユニなま！](http://ch.nicovideo.jp/uni-ch)からの引用です。
 
