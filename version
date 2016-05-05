@@ -29,15 +29,15 @@ VSVersionInfo(
       [
       StringTable(
         u'040904b0',
-        [StringStruct(u'CompanyName', u'The Univoice Community'),
+        [StringStruct(u'CompanyName', u'獅子座☆B型'),
         StringStruct(u'FileDescription', u'Unidice for Windows'),
         StringStruct(u'FileVersion', u'1.0.1.1'),
         StringStruct(u'InternalName', u'unidice'),
-        StringStruct(u'LegalCopyright', u'Copyright 2016 The Univoice Community. All rights reserved.'),
+        StringStruct(u'LegalCopyright', u'Copyright (C) 2016 獅子座☆B型. All rights reserved.'),
         StringStruct(u'OriginalFilename', u'unidice.exe'),
-        StringStruct(u'ProductName', u'Unidice'),
+        StringStruct(u'ProductName', u'ユニなま！FFXIVダイス！ランキング'),
         StringStruct(u'ProductVersion', u'1.0.1.1'),
-        StringStruct(u'CompanyShortName', u'Univoice'),
+        StringStruct(u'CompanyShortName', u'獅子座☆B型'),
         StringStruct(u'ProductShortName', u'Unidice'),
         StringStruct(u'Official Build', u'1')])
       ]),
