@@ -29,10 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>ユニ生FFXIVダイス！ランキング</string>
-  </property>
-  <property name="toolTip">
-   <string/>
+   <string>ユニなま！FFXIVダイス！ランキング</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -128,7 +125,7 @@
        </font>
       </property>
       <property name="toolTip">
-       <string notr="true" extracomment="ヒント">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;範囲選択ボタンで選択したエリアの座標を表示します。左上X座標,Y座標,右下X座標,Y座標です。この設定は自動保存され、次回起動時に読み込まれます。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string notr="true" extracomment="ヒント">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;範囲選択ボタンで選択したエリアの座標を表示します。左上X座標,Y座標,右下X座標,Y座標です。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_3">

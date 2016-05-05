@@ -27,6 +27,13 @@ from . import util
 
 # CHANGE THIS IF TESSERACT IS NOT IN YOUR PATH, OR IS NAMED DIFFERENTLY
 TESSERACT_CMD = "tesseract.exe" if os.name == 'nt' else 'tesseract'
+if os.name == 'nt':
+    if getattr(sys, 'frozen', True):
+        TMP_FILE = os.path.join(sys._MEIPASS, 'tmp_file')
+    else:
+        TMP_FILE = 'tmp_file'
+else:
+    TMP_FILE = 'tmp_file'
 
 TESSDATA_POSSIBLE_PATHS = [
     "/usr/local/share/tessdata",
@@ -39,6 +46,9 @@ TESSDATA_POSSIBLE_PATHS = [
     r"C:\Program Files (x86)\Tesseract-OCR\tessdata",  # Windows port
     r"C:\Program Files\Tesseract-OCR\tessdata",  # Windows port
 ]
+
+if os.name == 'nt':
+    TESSDATA_POSSIBLE_PATHS.append(os.path.join(sys._MEIPASS, 'tesseract', 'tessdata'))
 
 TESSDATA_EXTENSION = ".traineddata"
 
@@ -161,16 +171,21 @@ def detect_orientation(image, lang=None):
             startupinfo = subprocess.STARTUPINFO()
             startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
             startupinfo.wShowWindow = subprocess.SW_HIDE
-            proc = subprocess.Popen(command, stdin=subprocess.PIPE,
-                                    stdout=subprocess.PIPE,
-                                    stderr=subprocess.STDOUT,
-                                    startupinfo=startupinfo)
+            with open(TMP_FILE, 'w') as file_obj:
+                proc = subprocess.Popen(command, stdin=subprocess.PIPE,
+                                        stdout=file_obj,
+                                        stderr=subprocess.STDOUT,
+                                        startupinfo=startupinfo)
         else:
             proc = subprocess.Popen(command, stdin=subprocess.PIPE,
                                     stdout=subprocess.PIPE,
                                     stderr=subprocess.STDOUT)
         proc.stdin.close()
-        original_output = proc.stdout.read()
+        if os.name == 'nt':
+            with open(TMP_FILE, 'r') as file_obj:
+                original_output = file_obj.read()
+        else:
+            original_output = proc.stdout.read()
         proc.wait()
 
         original_output = original_output.decode("utf-8")
@@ -239,10 +254,11 @@ def run_tesseract(input_filename, output_filename_base, lang=None,
         startupinfo = subprocess.STARTUPINFO()
         startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
         startupinfo.wShowWindow = subprocess.SW_HIDE
-        proc = subprocess.Popen(command,
-                                stdout=subprocess.PIPE,
-                                stderr=subprocess.STDOUT,
-                                startupinfo=startupinfo)
+        with open(TMP_FILE, 'w') as file_obj:
+            proc = subprocess.Popen(command, stdin=subprocess.PIPE,
+                                    stdout=file_obj,
+                                    stderr=subprocess.STDOUT,
+                                    startupinfo=startupinfo)
     else:
         proc = subprocess.Popen(command,
                                 stdout=subprocess.PIPE,
@@ -252,7 +268,11 @@ def run_tesseract(input_filename, output_filename_base, lang=None,
     # asap or Tesseract will remain stuck when trying to write again on stderr.
     # In the end, we just have to make sure that proc.stderr.read() is called
     # before proc.wait()
-    errors = proc.stdout.read()
+    if os.name == 'nt':
+        with open(TMP_FILE,'r') as file_obj:
+            errors = file_obj.read()
+    else:
+        errors = proc.stdout.read()
     return (proc.wait(), errors)
 
 
@@ -398,15 +418,20 @@ def get_version():
         startupinfo = subprocess.STARTUPINFO()
         startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
         startupinfo.wShowWindow = subprocess.SW_HIDE
-        proc = subprocess.Popen(command,
-                                stdout=subprocess.PIPE,
-                                stderr=subprocess.STDOUT,
-                                startupinfo=startupinfo)
+        with open(TMP_FILE, 'w') as file_obj:
+            proc = subprocess.Popen(command, stdin=subprocess.PIPE,
+                                    stdout=file_obj,
+                                    stderr=subprocess.STDOUT,
+                                    startupinfo=startupinfo)
     else:
         proc = subprocess.Popen(command,
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-    ver_string = proc.stdout.read()
+    if os.name == 'nt':
+        with open(TMP_FILE, 'r') as file_obj:
+            ver_string = file_obj.read()
+    else:
+        ver_string = proc.stdout.read()
     ver_string = ver_string.decode('utf-8')
     ret = proc.wait()
     if ret not in (0, 1):

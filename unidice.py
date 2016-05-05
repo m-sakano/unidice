@@ -1,19 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
-if os.name == 'nt':
-    os.environ['PATH']=os.environ['PATH']+';'+os.getcwd()
+import os,sys,shutil
 
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QRubberBand
 from main_window import Ui_Form
 from selectWidget import Ui_Form2
 from PIL import Image, ImageGrab
-import sys, time
+import time
 import pyocr
 import pyocr.builders
-import ConfigParser
 
 class MainWindow(QWidget, Ui_Form):
 
@@ -26,9 +23,8 @@ class MainWindow(QWidget, Ui_Form):
         self.tableWidget.setColumnCount(len(horzHeaders))
         self.tableWidget.setHorizontalHeaderLabels(horzHeaders)
 
-        self.lineEdit.setText(config.get('default','area'))
+        self.lineEdit.setText('選択してください')
         self.lineEdit.setReadOnly(True)
-        self.lineEdit.textChanged.connect(self.saveConfigArea)
 
         self.pushButton_3.clicked.connect(self.showSelectWidget)
         self.pushButton.clicked.connect(self.analyse)
@@ -43,9 +39,8 @@ class MainWindow(QWidget, Ui_Form):
         self.tableWidget.setRowCount(0)
 
     def analyse(self):
-        # 選択範囲の面積がゼロの場合は何もしない
-        area = self.lineEdit.text().encode('utf-8').split(',')
-        if area[0]==area[2] or area[1]==area[3]:
+        # まだ選択されていないときは何もしない
+        if self.lineEdit.text().encode('utf-8') == '選択してください':
             return
 
         data = []
@@ -75,12 +70,6 @@ class MainWindow(QWidget, Ui_Form):
             self.tableWidget.setItem(row, 0, name)
             self.tableWidget.setItem(row, 1, dice)
             row += 1
-
-    def saveConfigArea(self):
-        value = self.lineEdit.text().encode('utf-8')
-        config.set('default', 'area', value)
-        with open('config.cfg','wb') as configfile:
-            config.write(configfile)
 
     def grabWindow(self):
         area = self.lineEdit.text().encode('utf-8').split(',')
@@ -202,12 +191,20 @@ class SelectWidget(QWidget, Ui_Form2):
         QWidget.mouseReleaseEvent(self, event)
 
 if __name__ == '__main__':
-    config = ConfigParser.RawConfigParser()
-    config.read('config.cfg')
+    if os.name == 'nt':
+        if getattr(sys, 'frozen', False):
+            os.environ['PATH']=os.environ['PATH']+';'+os.path.join(sys._MEIPASS, 'tesseract')
+            os.environ['TESSDATA_PREFIX']=os.path.join(sys._MEIPASS, 'tesseract')
+            window_icon=os.path.join(sys._MEIPASS, 'windowicon.ico')
+        else:
+            os.environ['PATH']=os.environ['PATH']+';'+os.getcwd()
+            window_icon='windowicon.ico'
+    else:
+        window_icon='windowicon.ico'
     app = QApplication(sys.argv)
     main_window = MainWindow()
     icon = QtGui.QIcon()
-    icon.addPixmap(QtGui.QPixmap("windowicon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+    icon.addPixmap(QtGui.QPixmap(window_icon), QtGui.QIcon.Normal, QtGui.QIcon.Off)
     app.setWindowIcon(icon)
     main_window.show()
     sys.exit(app.exec_())

@@ -47,7 +47,7 @@ class Ui_Form(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.lineEdit.setFont(font)
-        self.lineEdit.setToolTip("<html><head/><body><p>範囲選択ボタンで選択したエリアの座標を表示します。左上X座標,Y座標,右下X座標,Y座標です。この設定は自動保存され、次回起動時に読み込まれます。</p></body></html>")
+        self.lineEdit.setToolTip("<html><head/><body><p>範囲選択ボタンで選択したエリアの座標を表示します。左上X座標,Y座標,右下X座標,Y座標です。</p></body></html>")
         self.lineEdit.setObjectName("lineEdit")
         self.pushButton_3 = QtWidgets.QPushButton(self.groupBox)
         self.pushButton_3.setGeometry(QtCore.QRect(230, 70, 71, 21))
