@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>ユニなま！FFXIVダイス！ランキング</string>
+   <string>FFXIVダイス！ランキング</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
